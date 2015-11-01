@@ -6,6 +6,7 @@ using MySql.Data.MySqlClient;
 using System.Threading.Tasks;
 using GPManagement.GP.Entity;
 using Library;
+using System.Collections;
 namespace GPManagement.GP.Dao
 {
     public class EmployeeDAO
@@ -16,10 +17,77 @@ namespace GPManagement.GP.Dao
             String cs = DBUtil.getConnectionString("url_mysql");
             return DBUtil.getConnection(cs);
         }
-        public List<Employee> getAllEmployee(String sortColumn,Boolean asc, Boolean exactFilter)
+        public List<Employee> getAllEmployee(Employee emp, String sortColumn,Boolean asc,Boolean exactFilter)
         {
             List<Employee> result = new List<Employee>();
-            
+            MySqlTransaction tr = null;
+            MySqlDataReader rdr = null;
+            String sql = "SELECT * FROM EMPLOYEE WHERE 1=1 ";
+            Dictionary<String, String> paramDic = new Dictionary<String, String>();
+
+            if(emp != null)
+            {
+                String strFilter = emp.getStrFilter();
+                if (!String.IsNullOrWhiteSpace(strFilter))
+                {
+                    if (exactFilter)
+                    {
+                        sql += " AND E_NAME = @NAME ";
+                        paramDic.Add("@NAME",strFilter);
+                    }
+                    else
+                    {
+                        sql += " AND E_NAME LIKE '% @NAME %' ";
+                        paramDic.Add("@NAME",strFilter);
+                    }
+                    
+                }
+            }
+            if(sortColumn != null)
+            {
+                String sort = (asc == true? "ASC":"DSC");
+
+                sql += " ORDER BY @COLUMN @SORT ";
+                paramDic.Add("@COLUMN",sortColumn);
+                paramDic.Add("@SORT", sort);
+            }
+            try
+            {
+                conn = getConnection();
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = conn;
+                cmd.Transaction = tr;
+                cmd.CommandText = sql;
+                foreach (KeyValuePair<String, String> pair in paramDic)
+                {
+                    cmd.Parameters.AddWithValue(pair.Key, pair.Value);
+                }
+
+                rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    Employee temp = new Employee();
+                    temp.setName(rdr.GetString(0));
+                    temp.setPhone(rdr.GetString(1));
+                    temp.setEmail(rdr.GetString(2));
+                    temp.setBirthday(rdr.GetDateTime(3));
+                    //temp.setImage
+                    result.Add(temp);
+                }
+                tr.Commit();
+            }
+            catch (Exception ex)
+            {
+                tr.Rollback();
+            }
+            finally
+            {
+                if(rdr != null)
+                {
+                    rdr.Close();
+                }
+                DBUtil.CloseConnection(conn);
+            }
             return result;
         }
 

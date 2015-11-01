@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GPManagement.GP.Controller;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,15 @@ namespace GPManagement
 {
     public partial class Form1 : Form
     {
+        EmployeeController ec = new EmployeeController();
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }

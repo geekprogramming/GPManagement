@@ -15,9 +15,25 @@ namespace GPManagement.GP.Entity
         private DateTime birthday;
         private String image;
 
+        /*
+            strFilter không phải là một trường trong database
+            Nó dùng để lọc dữ liệu trong EmployeeDAO, xem hàm getAllEmployee
+        */
+        private String strFilter;
+
         public Employee()
         {
             
+        }
+
+        public void setStrFilter(String strFilter)
+        {
+            this.strFilter = strFilter;
+        }
+
+        public String getStrFilter()
+        {
+            return this.strFilter;
         }
 
         public void setId(int id)

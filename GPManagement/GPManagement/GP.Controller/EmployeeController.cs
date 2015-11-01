@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Forms;
+using GPManagement.GP.Service;
 namespace GPManagement.GP.Controller
 {
-    class EmployeeController
+    public class EmployeeController
     {
+        private EmployeeService service = new EmployeeService();
+
+        public EmployeeController()
+        {
+
+        }
     }
 }
