@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace GPManagement.GP.Entity
 {
-    class Employee
+    public class Employee
     {
+
     }
 }
