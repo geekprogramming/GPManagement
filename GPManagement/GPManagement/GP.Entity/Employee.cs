@@ -14,7 +14,7 @@ namespace GPManagement.GP.Entity
         private String email;
         private DateTime birthday;
         private String image;
-
+        private byte[] bImage;
         /*
             strFilter không phải là một trường trong database
             Nó dùng để lọc dữ liệu trong EmployeeDAO, xem hàm getAllEmployee
@@ -94,6 +94,16 @@ namespace GPManagement.GP.Entity
         public String getImage()
         {
             return this.image;
+        }
+
+        public void setBImage(byte[] bImage)
+        {
+            this.bImage = bImage;
+        }
+
+        public byte[] getBImage()
+        {
+            return this.bImage;
         }
 
     }

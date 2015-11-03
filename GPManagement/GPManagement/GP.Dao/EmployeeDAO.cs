@@ -71,7 +71,12 @@ namespace GPManagement.GP.Dao
                     temp.setPhone(rdr.GetString(1));
                     temp.setEmail(rdr.GetString(2));
                     temp.setBirthday(rdr.GetDateTime(3));
-                    //temp.setImage
+                    byte[] rawData;
+                    UInt32 fileSize;
+                    fileSize = rdr.GetUInt32(rdr.GetOrdinal("e_image"));
+                    rawData = new byte[fileSize];
+                    rdr.GetBytes(rdr.GetOrdinal("e_image"), 0, rawData, 0, (Int32)fileSize);
+                    temp.setBImage(rawData);
                     result.Add(temp);
                 }
                 tr.Commit();
