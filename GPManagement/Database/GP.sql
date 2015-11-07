@@ -1,25 +1,25 @@
 create database if not exists GP;
 use GP;
+
+
 create table if not exists GP_Schedule(
 	s_id int(11) not null auto_increment,
     s_time datetime not null,
-    s_type varchar(5) not null,
+    s_type varchar(30) not null,
     s_place varchar(100) not null,
     s_content text not null,
     s_comment text,
-    constraint pk_sche primary key(s_id),
-    constraint ck_type check(s_type='Spend' or s_type='Add')
+    constraint pk_sche primary key(s_id)
 );
 
 create table if not exists GP_Budget(
 	b_id int(11) not null auto_increment,
     b_time datetime not null,
-    b_type varchar(5) not null,
+    b_type varchar(30) not null,
     b_quantity double not null,
     b_total double not null,
     b_comment text not null,
-    constraint pk_bud primary key(b_id),
-    constraint ck_type check(b_type='Metting' or b_type='Other')
+    constraint pk_bud primary key(b_id)
 );
 
 create table if not exists GP_Project(
@@ -64,3 +64,13 @@ create table if not exists GP_Task_Emp(
     constraint fk_emp foreign key(te_id_emp) references GP_Employee(e_id),
     constraint fk_task foreign key(te_id_task) references GP_Task(t_id)
 );
+
+create table if not exists GP_Account(
+	e_id int(11) not null references GP_Employee(e_id),
+    a_username varchar(50) not null,
+    a_password varchar(50) not null,
+    constraint unq_uname unique(a_username)
+    
+);
+
+
