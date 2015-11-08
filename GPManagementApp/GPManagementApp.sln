@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GPManagementApp", "GPManagementApp\GPManagementApp.csproj", "{9D327951-1F45-4891-9EE6-C9EA8E16BBB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GPLibrary", "GPLibrary\GPLibrary.csproj", "{72F9E8BB-A0A0-430D-92AB-A44F3D320F15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GPControl", "GPControl\GPControl.csproj", "{7720604E-0CB7-4AE1-AC6E-6E0B5D031D5B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9D327951-1F45-4891-9EE6-C9EA8E16BBB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D327951-1F45-4891-9EE6-C9EA8E16BBB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D327951-1F45-4891-9EE6-C9EA8E16BBB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D327951-1F45-4891-9EE6-C9EA8E16BBB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72F9E8BB-A0A0-430D-92AB-A44F3D320F15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72F9E8BB-A0A0-430D-92AB-A44F3D320F15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72F9E8BB-A0A0-430D-92AB-A44F3D320F15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72F9E8BB-A0A0-430D-92AB-A44F3D320F15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7720604E-0CB7-4AE1-AC6E-6E0B5D031D5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7720604E-0CB7-4AE1-AC6E-6E0B5D031D5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7720604E-0CB7-4AE1-AC6E-6E0B5D031D5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7720604E-0CB7-4AE1-AC6E-6E0B5D031D5B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

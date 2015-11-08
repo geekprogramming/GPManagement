@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using GPManagement.GP.Entity;
 using Library;
 using System.Collections;
+using System.Data;
+
 namespace GPManagement.GP.Dao
 {
     public class EmployeeDAO
@@ -21,7 +23,7 @@ namespace GPManagement.GP.Dao
         {
             List<Employee> result = new List<Employee>();
             MySqlTransaction tr = null;
-            MySqlDataReader rdr = null;
+            MySqlDataAdapter rdr = null;
             String sql = "SELECT * FROM EMPLOYEE WHERE 1=1 ";
             Dictionary<String, String> paramDic = new Dictionary<String, String>();
 
@@ -63,22 +65,10 @@ namespace GPManagement.GP.Dao
                     cmd.Parameters.AddWithValue(pair.Key, pair.Value);
                 }
 
-                rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                    Employee temp = new Employee();
-                    temp.setName(rdr.GetString(0));
-                    temp.setPhone(rdr.GetString(1));
-                    temp.setEmail(rdr.GetString(2));
-                    temp.setBirthday(rdr.GetDateTime(3));
-                    byte[] rawData;
-                    UInt32 fileSize;
-                    fileSize = rdr.GetUInt32(rdr.GetOrdinal("e_image"));
-                    rawData = new byte[fileSize];
-                    rdr.GetBytes(rdr.GetOrdinal("e_image"), 0, rawData, 0, (Int32)fileSize);
-                    temp.setBImage(rawData);
-                    result.Add(temp);
-                }
+                rdr = new MySqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                rdr.Fill(dt);
+
                 tr.Commit();
             }
             catch (Exception ex)
